@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->boolean('completed');
-            $table->integer('created_by_user_id');
-            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('created_by_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
