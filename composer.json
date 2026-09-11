@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "pgabrielm/taskforge-api",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Task management API with Sanctum authentication and paginated resources.",
+    "keywords": ["laravel", "sanctum", "task-management", "api"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
