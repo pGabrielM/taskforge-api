@@ -34,7 +34,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create([
             'name' => 'Gabriel Miranda',
-            'email' => 'gabriel@example.com'
+            'email' => 'gabriel@example.com',
         ]);
 
         $response = $this->actingAs($user)->putJson('/api/user', [
@@ -48,15 +48,15 @@ class UserTest extends TestCase
     public function test_update_user_with_existing_email()
     {
         User::factory()->create([
-            'email' => 'existent@email.com'
+            'email' => 'existent@email.com',
         ]);
 
         $user = User::factory()->create([
-            'email' => 'gabriel@example.com'
+            'email' => 'gabriel@example.com',
         ]);
 
         $response = $this->actingAs($user)->putJson('/api/user', [
-            'email' => 'existent@email.com'
+            'email' => 'existent@email.com',
         ]);
 
         $response->assertInvalid('email');
@@ -66,11 +66,11 @@ class UserTest extends TestCase
     public function test_update_user_with_invalid_email()
     {
         $user = User::factory()->create([
-            'email' => 'gabriel@example.com'
+            'email' => 'gabriel@example.com',
         ]);
 
         $response = $this->actingAs($user)->putJson('/api/user', [
-            'email' => 'existent'
+            'email' => 'existent',
         ]);
 
         $response->assertInvalid('email');

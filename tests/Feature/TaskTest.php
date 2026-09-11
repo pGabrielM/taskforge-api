@@ -37,7 +37,6 @@ class TaskTest extends TestCase
 
         $response->assertJsonStructure(['data', 'links', 'meta']);
 
-
         $response->assertOk();
     }
 
@@ -72,7 +71,7 @@ class TaskTest extends TestCase
         $response = $this->actingAs($user)->postJson('/api/user/task', [
             'name' => 'Created Task',
             'description' => 'Created task description',
-            'completed' => false
+            'completed' => false,
         ]);
 
         $this->assertDatabaseHas('tasks', ['name' => 'Created Task']);
@@ -81,14 +80,13 @@ class TaskTest extends TestCase
         $response->assertCreated();
     }
 
-
     public function test_create_tasks_without_required_fields()
     {
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->postJson('/api/user/task', [
             'description' => 'Created task description',
-            'completed' => false
+            'completed' => false,
         ]);
 
         $response->assertInvalid('name');
@@ -96,7 +94,7 @@ class TaskTest extends TestCase
 
         $response = $this->actingAs($user)->postJson('/api/user/task', [
             'name' => 'Created Task',
-            'completed' => false
+            'completed' => false,
         ]);
 
         $response->assertInvalid('description');
@@ -120,7 +118,7 @@ class TaskTest extends TestCase
         $response = $this->actingAs($user)->putJson("/api/user/task/{$task->id}", [
             'name' => 'Updated Task',
             'description' => 'Updated description',
-            'completed' => false
+            'completed' => false,
         ]);
 
         $this->assertDatabaseHas('tasks', ['id' => $task->id]);
@@ -136,7 +134,7 @@ class TaskTest extends TestCase
 
         $response = $this->actingAs($user)->putJson("/api/user/task/{$task->id}", [
             'description' => 'Created task description',
-            'completed' => false
+            'completed' => false,
         ]);
 
         $response->assertInvalid('name');
@@ -144,7 +142,7 @@ class TaskTest extends TestCase
 
         $response = $this->actingAs($user)->putJson("/api/user/task/{$task->id}", [
             'name' => 'Created Task',
-            'completed' => false
+            'completed' => false,
         ]);
 
         $response->assertInvalid('description');

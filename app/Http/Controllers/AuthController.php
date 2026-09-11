@@ -17,7 +17,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
@@ -26,7 +26,7 @@ class AuthController extends Controller
         $user = [
             'user' => $user,
             'token' => $token->plainTextToken,
-            'expires_at' => $token->accessToken->expires_at
+            'expires_at' => $token->accessToken->expires_at,
         ];
 
         return response()->json($user, 200);
@@ -39,7 +39,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' =>  Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ]);
 
         return response()->json($user, 200);

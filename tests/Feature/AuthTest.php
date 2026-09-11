@@ -9,6 +9,7 @@ use Tests\TestCase;
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
+
     public function test_user_can_authenticate()
     {
         User::factory()->create([
@@ -30,7 +31,7 @@ class AuthTest extends TestCase
         $response = $this->postJson('/api/register', [
             'name' => 'Gabriel Miranda',
             'email' => 'gabriel@example.com',
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertJsonStructure(['name', 'email', 'updated_at', 'created_at', 'id']);
@@ -41,13 +42,13 @@ class AuthTest extends TestCase
     {
         User::factory()->create([
             'name' => 'Gabriel Miranda',
-            'email' => 'gabriel@example.com'
+            'email' => 'gabriel@example.com',
         ]);
 
         $response = $this->postJson('/api/register', [
             'name' => 'Gabriel Miranda',
             'email' => 'gabriel@example.com',
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertInvalid('email');
@@ -59,7 +60,7 @@ class AuthTest extends TestCase
         $response = $this->postJson('/api/register', [
             'name' => 'Gabriel Miranda',
             'email' => 'gabriel',
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertInvalid('email');
@@ -71,7 +72,7 @@ class AuthTest extends TestCase
         $response = $this->postJson('/api/register', [
             'name' => 'Gabriel Miranda',
             'email' => 'gabriel@example.com',
-            'password' => 'passw'
+            'password' => 'passw',
         ]);
 
         $response->assertInvalid('password');
@@ -82,7 +83,7 @@ class AuthTest extends TestCase
     {
         $response = $this->postJson('/api/register', [
             'email' => 'gabriel@example.com',
-            'password' => 'passw'
+            'password' => 'passw',
         ]);
 
         $response->assertInvalid('name');
@@ -90,7 +91,7 @@ class AuthTest extends TestCase
 
         $response = $this->postJson('/api/register', [
             'name' => 'Gabriel Miranda',
-            'password' => 'passw'
+            'password' => 'passw',
         ]);
 
         $response->assertInvalid('email');
@@ -111,7 +112,7 @@ class AuthTest extends TestCase
         $token = $user->createToken('testToken')->plainTextToken;
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->postJson('/api/logout');
 
         $response->assertOk();
@@ -136,13 +137,14 @@ class AuthTest extends TestCase
         $response->assertUnauthorized();
         $response->assertJson(['message' => 'Unauthenticated.']);
     }
+
     public function test_logout_with_expired_token()
     {
         $user = User::factory()->create();
         $token = $user->createToken('testToken', ['*'], now()->subHour())->plainTextToken;
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->postJson('/api/logout');
 
         $response->assertUnauthorized();

@@ -18,6 +18,6 @@ class Task extends Model
         'name',
         'description',
         'completed',
-        'created_by_user_id'
+        'created_by_user_id',
     ];
 }

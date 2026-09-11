@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -13,6 +12,7 @@ class UserController extends Controller
     {
         return $request->user();
     }
+
     public function update(UserRequest $request): JsonResponse
     {
         $request->validated();
@@ -25,6 +25,7 @@ class UserController extends Controller
 
         return response()->json($user, 200);
     }
+
     public function delete(UserRequest $request): JsonResponse
     {
         $request->user()->delete();
