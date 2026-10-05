@@ -1,7 +1,7 @@
 # Taskforge API
 
 ![CI](https://github.com/pGabrielM/taskforge-api/actions/workflows/ci.yml/badge.svg)
-![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=flat-square)
+![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square)
 ![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Sanctum-4169E1?style=flat-square)
 
@@ -68,4 +68,4 @@ Every push/PR to `main` runs Pint and the full test suite against a real Postgre
 
 ## Stack
 
-PHP, Laravel 11, Laravel Sanctum, PostgreSQL, Docker (Sail), PHPUnit, Laravel Pint.
+PHP, Laravel 13, Laravel Sanctum, PostgreSQL, Docker (Sail), PHPUnit, Laravel Pint.
