@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/pGabrielM/taskforge-api/actions/workflows/ci.yml/badge.svg)
 ![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square)
-![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square)
+![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?style=flat-square)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Sanctum-4169E1?style=flat-square)
 
 REST API for task management: Sanctum-authenticated, user-scoped tasks, with a public read-only
